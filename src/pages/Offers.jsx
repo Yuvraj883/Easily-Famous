@@ -13,24 +13,31 @@ function getOffers (){
         key:key,
         action:'services'
     }}).then((response)=>{
-        setOffers(response.data);
-        console.log(offers);
+        console.log(response);
+
+        if(Array.isArray(response?.data)&& response?.data.length){
+            setOffers(response['data']);
+            console.log(offers);
+        }
+       
     })
 }
 
 useEffect(()=>{
     getOffers();
 },[]);
-
+    if(offers === null){
+        return <div>...loading</div>
+    }
     return(
         <>
-        {/* {
-
-            // offers.map((offer, index)=>(
-            //     <OfferCard props = {offer} key={index}/>
+        {
+            
+            offers.map((offer, index)=>(
+                <OfferCard {...offer} key={index}/>
             )
             )
-        } */}
+        }
         </>
     )
 }
