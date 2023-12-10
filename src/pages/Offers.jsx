@@ -3,7 +3,9 @@ import OfferCard from "../components/OfferCard";
 import axios from "axios";
 
 const key = '00b4e5c0f084ee04ceb376293f3be3c7';
-const baseURL = `https://indianprovider.com/api/v2`;
+// const baseURL = `https://indianprovider.com/api/v2`;
+const baseURL = 'http://localhost:3001/api/v2';
+
 const Offers = () => {
     const [offers, setOffers] = useState(null);
 
