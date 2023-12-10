@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const key = 'c136e8c14dc7b35f17475ea8538c8fe2';
-const baseURL = `'https://corsproxy.io/?https://indianprovider.com/api/v2`;
+
+
+// const key = 'c136e8c14dc7b35f17475ea8538c8fe2';
+// const baseURL = `'https://indianprovider.com/api/v2`;
+const baseURL = 'http://localhost:3001/api/v2';
+const key = 'e4c8c15861780f3a9ad8288cd3e8f0a7';
 
 const PopupForm = ({ onClose, onSubmit }) => {
   const [profileUrl, setProfileUrl] = useState('');
@@ -14,7 +18,7 @@ const PopupForm = ({ onClose, onSubmit }) => {
       const response = await axios.post(baseURL, {
         key: key,
         action: 'add',
-        service: 2532,
+        service: 2572,
         link: profileUrl,
         quantity: 10
       }, {
