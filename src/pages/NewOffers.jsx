@@ -16,7 +16,7 @@ const NewOffers = () => {
 
   const handleFormSubmit = (profileUrl) => {
     // Handle form submission logic here
-    console.log('Submitted profile URL:', profileUrl);
+    // console.log('Submitted profile URL:', profileUrl);
 
     // Show the processing message
     setIsProcessing(true);

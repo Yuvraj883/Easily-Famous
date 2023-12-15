@@ -32,7 +32,7 @@ const PopupForm = ({ onClose, onSubmit }) => {
 
       // Assuming the response contains some data you want to handle
       const responseData = response.data;
-      console.log('Response Data:', responseData);
+      // console.log('Response Data:', responseData);
 
       // Trigger the onSubmit callback
       onSubmit(profileUrl);

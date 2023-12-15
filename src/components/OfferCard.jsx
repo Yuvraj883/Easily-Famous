@@ -14,7 +14,7 @@ const OfferCard = ({ name, rate, max, min, service, id }) => {
 
   const handleFormSubmit = (profileUrl) => {
     // Handle form submission logic here
-    console.log('Submitted profile URL:', profileUrl);
+    // console.log('Submitted profile URL:', profileUrl);
     // You can add more logic here, such as making an API request
     // or updating state based on the form submission.
   };
