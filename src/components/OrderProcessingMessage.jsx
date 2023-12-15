@@ -32,11 +32,7 @@ const OrderProcessingMessage = ({ onClose }) => {
         <div className="mt-4">
           <div className="relative pt-1">
             <div className="flex mb-2 items-center justify-between">
-              <div>
-                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-teal-600 bg-teal-200">
-                  {progress}%
-                </span>
-              </div>
+             
             </div>
             <div className="flex h-2 overflow-hidden rounded-full">
               <div
