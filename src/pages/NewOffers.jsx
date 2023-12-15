@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PopupForm from '../components/PopupForm'; // Update the import path as needed
+import OrderProcessingMessage from '../components/OrderProcessingMessage'; // Update the import path as needed
 
 const NewOffers = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const handleOpenPopup = () => {
     setIsPopupOpen(true);
@@ -15,8 +17,17 @@ const NewOffers = () => {
   const handleFormSubmit = (profileUrl) => {
     // Handle form submission logic here
     console.log('Submitted profile URL:', profileUrl);
-    // You can add more logic here, such as making an API request
-    // or updating state based on the form submission.
+
+    // Show the processing message
+    setIsProcessing(true);
+
+    // Simulate a delay for demonstration purposes (replace with actual logic)
+    setTimeout(() => {
+      // After processing, hide the message
+      setIsProcessing(false);
+      // Close the pop-up
+      handleClosePopup();
+    }, 3000);
   };
 
   return (
@@ -37,10 +48,11 @@ const NewOffers = () => {
         </button>
       </div>
 
-      {isPopupOpen && 
+      {isPopupOpen && !isProcessing && (
         <PopupForm onClose={handleClosePopup} onSubmit={handleFormSubmit} />
-      
-      }
+      )}
+
+      {isProcessing && <OrderProcessingMessage onClose={handleClosePopup} />}
     </div>
   );
 };
