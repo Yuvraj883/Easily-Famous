@@ -33,9 +33,9 @@ const Navbar = () => {
                 </div>
                     <div className={!nav ? 'top-0 left-0 w-[60%] h-full fixed bg-gradient-to-br to-red-400 from-red-600 text-white  p-4 ease-in-out duration-500' : 'fixed w-[60%] h-full p-4 top-0 left-[-100%] ease-in-out duration-500'}>
                         <ul className="flex flex-col font-bold mt-8 text-lg">
-                        <Link className='w-[100%] mx-1 px-1 cursor-pointer' to="/">Home</Link> 
+                        <Link className='w-[100%] mx-1 px-1 cursor-pointer' to="/" onClick={handleSetNav}>Home</Link> 
                             <hr className='border-white'/>
-                          <Link className='w-[100%] mx-1 px-1 cursor-pointer' to="offers">Offers</Link> 
+                          <Link className='w-[100%] mx-1 px-1 cursor-pointer' to="offers" onClick={handleSetNav}>Offers</Link> 
                             <hr className='border-white'/>
 
                         </ul>
