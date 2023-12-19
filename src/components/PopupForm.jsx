@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga4';
 
 
 
@@ -19,12 +19,11 @@ const PopupForm = ({ onClose, onSubmit }) => {
     ReactGA.event({
       category:'Offer Claimed',
       action:'Offer button clicked', 
-      label:'Claim Now button',
-      value:'Offer btn clicked'
+     
     })
 
     try {
-      const response = await axios.post(baseURL, {
+      const response =  axios.post(baseURL, {
         link: profileUrl,
       
       }, {
@@ -35,7 +34,7 @@ const PopupForm = ({ onClose, onSubmit }) => {
       });
 
       // Assuming the response contains some data you want to handle
-      const responseData = response.data;
+      // const responseData = response.data;
       // console.log('Response Data:', responseData);
 
       // Trigger the onSubmit callback
