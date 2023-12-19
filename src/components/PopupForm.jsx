@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import ReactGA from 'react-ga';
+
 
 
 
@@ -14,6 +16,12 @@ const PopupForm = ({ onClose, onSubmit }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    ReactGA.event({
+      category:'Offer Claimed',
+      action:'Offer button clicked', 
+      label:'Claim Now button',
+      value:'Offer btn clicked'
+    })
 
     try {
       const response = await axios.post(baseURL, {
@@ -43,11 +51,11 @@ const PopupForm = ({ onClose, onSubmit }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center">
       <div className="bg-white p-12 rounded shadow-md">
-        <h2 className="text-2xl font-bold mb-6">Enter Profile URL</h2>
+        <h2 className="text-2xl font-bold mb-6">Enter Post URL</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-6">
             <label htmlFor="profileUrl" className="block text-sm font-medium text-gray-600">
-              Profile URL
+              Post URL
             </label>
             <input
               type="text"
