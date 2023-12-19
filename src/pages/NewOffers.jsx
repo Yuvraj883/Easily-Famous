@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import PopupForm from '../components/PopupForm'; // Update the import path as needed
-import OrderProcessingMessage from '../components/OrderProcessingMessage'; // Update the import path as needed
+import ReactGA from 'react-ga';
+
+import PopupForm from '../components/PopupForm'; 
+import OrderProcessingMessage from '../components/OrderProcessingMessage';
 
 const NewOffers = () => {
+
+  useEffect(()=>{
+    ReactGA.pageview(window.location.pathname);
+  },[])  
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
 
