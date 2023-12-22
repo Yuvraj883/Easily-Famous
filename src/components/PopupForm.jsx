@@ -8,7 +8,7 @@ import ReactGA from 'react-ga4';
 // const key = 'c136e8c14dc7b35f17475ea8538c8fe2';
 // const baseURL = `'https://indianprovider.com/api/v2`;
 // const baseURL = 'http://localhost:3001/api/v2';
-const baseURL = 'https://easily-famous.onrender.com/api/v2'
+const baseURL = 'https://easily-famous.onrender.com/api/v2';
 
 
 const PopupForm = ({ onClose, onSubmit }) => {
@@ -21,9 +21,10 @@ const PopupForm = ({ onClose, onSubmit }) => {
       action:'Offer button clicked', 
      
     })
+    // console.log("handleSubmit");
 
     try {
-      const response =  axios.post(baseURL, {
+      const response = await axios.post(baseURL, {
         link: profileUrl,
       
       }, {
@@ -43,7 +44,7 @@ const PopupForm = ({ onClose, onSubmit }) => {
       // Close the pop-up
       onClose();
     } catch (error) {
-      console.error('Error:', error);
+      console.log('Error:', error);
     }
   };
 
