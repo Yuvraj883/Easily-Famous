@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import ReactGA from 'react-ga4';
 import NewOffers from './pages/NewOffers';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import Footer from './components/Footer';
 
 const Measurement_ID = 'G-678K43VV21'; 
 ReactGA.initialize(Measurement_ID);
@@ -21,7 +22,7 @@ function App() {
 
    </Routes>
    </BrowserRouter>
-   
+   <Footer></Footer>
    
    </>
   );
