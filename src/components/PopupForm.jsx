@@ -2,35 +2,27 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import ReactGA from 'react-ga4';
 
-
-
-
-// const key = 'c136e8c14dc7b35f17475ea8538c8fe2';
-// const baseURL = `'https://indianprovider.com/api/v2`;
-// const baseURL = 'http://localhost:3001/api/v2';
 const baseURL = 'https://easily-famous.onrender.com/api/v2';
-
 
 const PopupForm = ({ onClose, onSubmit }) => {
   const [profileUrl, setProfileUrl] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     ReactGA.event({
-      category:'Offer Claimed',
-      action:'Offer button clicked', 
-     
-    })
-    // console.log("handleSubmit");
+      category: 'Offer Claimed',
+      action: 'Offer button clicked',
+    });
 
     try {
+      setIsSubmitting(true);
+
       const response = await axios.post(baseURL, {
         link: profileUrl,
-      
       }, {
         headers: {
           'Content-Type': 'application/json',
-          // 'Origin':"https://indianprovider.com",
         },
       });
 
@@ -44,7 +36,15 @@ const PopupForm = ({ onClose, onSubmit }) => {
       // Close the pop-up
       onClose();
     } catch (error) {
-      console.log('Error:', error);
+      if (error.response && error.response.status === 429) {
+        // If 429 error, show popup, close after alert, and disable submit button
+        alert('You can only avail the offer once every 6 hours.');
+        onClose(); // Close the pop-up
+      } else {
+        console.log('Error:', error);
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -71,15 +71,16 @@ const PopupForm = ({ onClose, onSubmit }) => {
               type="button"
               className="mr-2 bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               onClick={onClose}
+              disabled={isSubmitting}
             >
               Cancel
             </button>
             <button
-              onClick={handleSubmit}
               type="submit"
               className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              disabled={isSubmitting}
             >
-              Submit
+              {isSubmitting ? 'Submitting...' : 'Submit'}
             </button>
           </div>
         </form>
@@ -89,6 +90,3 @@ const PopupForm = ({ onClose, onSubmit }) => {
 };
 
 export default PopupForm;
-
-
-
