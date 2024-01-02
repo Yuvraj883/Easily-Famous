@@ -40,6 +40,10 @@ const Navbar = () => {
                             <hr className='border-white'/>
                           <Link className='w-[100%] mx-1 px-1 cursor-pointer' to="offers" onClick={handleSetNav}>Offers</Link> 
                             <hr className='border-white'/>
+                          <Link className='w-[100%] mx-1 px-1 cursor-pointer' to="offers" onClick={handleSetNav}>FAQ</Link>
+                          <hr className='border-white'/>
+
+
 
                         </ul>
                     </div>
