@@ -25,7 +25,7 @@ const Footer = () => {
             Yuvraj Singh
           </a>
         </p>
-        <span className="mb-2">© {new Date().getFullYear()} <a href="https://indianprovider.com/" target="_blank">Indian Provider</a>. All rights reserved.</span>
+        <span className="mb-2">© {new Date().getFullYear()} <a href="https://indianprovider.com/"   rel="noopener noreferrer" target="_blank">Indian Provider</a>. All rights reserved.</span>
       </div>
     </footer>
   );
