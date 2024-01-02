@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const FAQs = () => {
+  const [openIndex, setOpenIndex] = useState(null);
+
   const faqData = [
     {
       question: 'What is Social Media Marketing (SMM)?',
@@ -37,13 +39,25 @@ const FAQs = () => {
     // Add more FAQs as needed
   ];
 
+  const handleToggle = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
   return (
-    <div className="mt-8">
+    <div className="mt-8 p-8 mx-auto w-[80%]">
       <h2 className="text-2xl font-bold mb-4">Frequently Asked Questions</h2>
       {faqData.map((item, index) => (
         <div key={index} className="mb-4">
-          <h3 className="text-lg font-semibold">{item.question}</h3>
-          <p className="mt-2">{item.answer}</p>
+          <div
+            className="cursor-pointer flex justify-between items-center"
+            onClick={() => handleToggle(index)}
+          >
+            <h3 className="text-lg font-semibold">{item.question}</h3>
+            <span>{openIndex === index ? '▲' : '▼'}</span>
+          </div>
+          {openIndex === index && (
+            <p className="mt-2">{item.answer}</p>
+          )}
         </div>
       ))}
     </div>
