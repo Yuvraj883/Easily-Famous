@@ -12,12 +12,15 @@ const Navbar = () => {
     return (
         <>
             {/* Design for large screens */}
-            <nav className="bg-purple-600 hidden md:flex flex-row justify-between items-center text-white p-4">
+            <nav className="bg-purple-600 hidden px-8 md:flex flex-row justify-between items-center text-white p-4">
                 <span className="font-extrabold text-2xl bg-gradient-to-r bg-clip-text text-transparent from-yellow-500 to-red-500">easilyFamous &#8482;</span>
                 <div>
                     <ul className="flex flex-row font-bold">
                         <li className="mx-1 px-1 cursor-pointer"><Link to="/">Home</Link> </li>
                         <li className="mx-1 px-1 cursor-pointer "><Link to="offers">Offers</Link> </li>
+                        <li className="mx-1 px-1 cursor-pointer "><Link to="offers">FAQ</Link> </li>
+
+                        
                     </ul>
                 </div>
             </nav>
