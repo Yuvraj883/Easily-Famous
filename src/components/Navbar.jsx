@@ -18,7 +18,7 @@ const Navbar = () => {
                     <ul className="flex flex-row font-bold">
                         <li className="mx-1 px-1 cursor-pointer"><Link to="/">Home</Link> </li>
                         <li className="mx-1 px-1 cursor-pointer "><Link to="offers">Offers</Link> </li>
-                        <li className="mx-1 px-1 cursor-pointer "><Link to="offers">FAQ</Link> </li>
+                        <li className="mx-1 px-1 cursor-pointer "><Link to="faq">FAQ</Link> </li>
 
                         
                     </ul>
@@ -40,7 +40,7 @@ const Navbar = () => {
                             <hr className='border-white'/>
                           <Link className='w-[100%] mx-1 px-1 cursor-pointer' to="offers" onClick={handleSetNav}>Offers</Link> 
                             <hr className='border-white'/>
-                          <Link className='w-[100%] mx-1 px-1 cursor-pointer' to="offers" onClick={handleSetNav}>FAQ</Link>
+                          <Link className='w-[100%] mx-1 px-1 cursor-pointer' to="faq" onClick={handleSetNav}>FAQ</Link>
                           <hr className='border-white'/>
 
 
