@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FAQ = () => {
+const FAQs = () => {
   const faqData = [
     {
       question: 'What is Social Media Marketing (SMM)?',
@@ -50,4 +50,4 @@ const FAQ = () => {
   );
 };
 
-export default FAQ;
+export default FAQs;
