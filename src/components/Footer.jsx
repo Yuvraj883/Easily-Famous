@@ -14,7 +14,7 @@ const Footer = () => {
           </a>
           💌
         </span>
-        <p className="mb-2">
+        {/* <p className="mb-2">
           Made by{" "}
           <a
             className="px-1 cursor-pointer text-blue-300 hover:underline"
@@ -24,7 +24,7 @@ const Footer = () => {
           >
             Yuvraj Singh
           </a>
-        </p>
+        </p> */}
         <span className="mb-2">© {new Date().getFullYear()} <a href="https://indianprovider.com/"   rel="noopener noreferrer" target="_blank">Indian Provider</a>. All rights reserved.</span>
       </div>
     </footer>
