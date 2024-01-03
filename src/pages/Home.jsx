@@ -12,7 +12,7 @@ const Home = ()=>{
    },[])
     return(
         <>
-      <div className="w-[100%] flex flex-col overflow-hidden justify-center items-center p-8"> 
+      <div className="w-[100%] flex h-screen flex-col overflow-hidden  p-8 h-max"> 
       {
             blogs.map((blog, index) =>(
                 <BlogCard {...blog} key={index} />
