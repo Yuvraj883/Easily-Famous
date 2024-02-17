@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ReactGA from 'react-ga4';
 
@@ -7,6 +7,20 @@ const baseURL = 'https://easily-famous.onrender.com/api/v2';
 const PopupForm = ({ onClose, onSubmit }) => {
   const [profileUrl, setProfileUrl] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLoading, setLoading] = useState(false); // New state for loading indication
+  const [countdown, setCountdown] = useState(20); // Countdown timer
+
+  useEffect(() => {
+    let timer;
+    if (isLoading && countdown > 0) {
+      timer = setTimeout(() => setCountdown(countdown - 1), 1000); // Decrease countdown every second
+    } else if (countdown === 0) {
+      setLoading(false); // If countdown reaches 0, stop loading
+      onSubmit(profileUrl); // Perform submit action
+      onClose(); // Close the pop-up
+    }
+    return () => clearTimeout(timer);
+  }, [isLoading, countdown, onSubmit, onClose, profileUrl]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,43 +29,25 @@ const PopupForm = ({ onClose, onSubmit }) => {
       action: 'Offer button clicked',
     });
 
-    try {
-      setIsSubmitting(true);
+    setIsSubmitting(true);
+    setLoading(true); // Show loading indication
 
-      const response = await axios.post(baseURL, {
-        link: profileUrl,
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      // Assuming the response contains some data you want to handle
-      // const responseData = response.data;
-      // console.log('Response Data:', responseData);
-
-      // Trigger the onSubmit callback
-      onSubmit(profileUrl);
-
-      // Close the pop-up
-      onClose();
-    } catch (error) {
-      if (error.response && error.response.status === 429) {
-        // If 429 error, show popup, close after alert, and disable submit button
-        alert('You can only avail the offer once every 6 hours.');
-        onClose(); // Close the pop-up
-      } else {
-        console.log('Error:', error);
-      }
-    } finally {
+    // Simulate API request delay for demonstration purposes
+    setTimeout(() => {
       setIsSubmitting(false);
-    }
+      setLoading(false); // Stop loading indication
+    }, 20000); // Assuming API request takes 20 seconds
   };
 
   return (
     <div className="fixed inset-0 flex items-center justify-center">
-      <div className="bg-white p-12 rounded shadow-md">
+      <div className="bg-white p-12 rounded shadow-md relative">
         <h2 className="text-2xl font-bold mb-6">Enter Post URL</h2>
+        {isLoading && (
+          <div className="absolute top-0 right-0 mr-4 mt-2 text-sm text-gray-500">
+            {`Please wait... (${countdown}s)`}
+          </div>
+        )}
         <form onSubmit={handleSubmit}>
           <div className="mb-6">
             <label htmlFor="profileUrl" className="block text-sm font-medium text-gray-600">
