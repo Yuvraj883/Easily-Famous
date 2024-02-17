@@ -14,10 +14,11 @@ const PopupForm = ({ onClose, onSubmit }) => {
     let timer;
     if (isLoading && countdown > 0) {
       timer = setTimeout(() => setCountdown(countdown - 1), 1000); // Decrease countdown every second
-    } else if (countdown === 0) {
-      setLoading(false); // If countdown reaches 0, stop loading
+    } else if (countdown === 0 && isLoading) {
+      setLoading(false); // If countdown reaches 0 and still loading, stop loading
       onSubmit(profileUrl); // Perform submit action
       onClose(); // Close the pop-up
+      setCountdown(20);
     }
     return () => clearTimeout(timer);
   }, [isLoading, countdown, onSubmit, onClose, profileUrl]);
@@ -32,11 +33,31 @@ const PopupForm = ({ onClose, onSubmit }) => {
     setIsSubmitting(true);
     setLoading(true); // Show loading indication
 
-    // Simulate API request delay for demonstration purposes
-    setTimeout(() => {
+    try {
+      const response = await axios.post(baseURL, {
+        link: profileUrl,
+      });
+
+      // Assuming the response contains some data you want to handle
+      // const responseData = response.data;
+      // console.log('Response Data:', responseData);
+
+      // Simulate API request delay for demonstration purposes
+      setTimeout(() => {
+        setIsSubmitting(false);
+        setLoading(false); // Stop loading indication
+        // Show order processing pop-up
+        alert('Order processing...');
+      }, 2000); // Assuming API request takes 2 seconds
+    } catch (error) {
+      console.log('Error:', error);
       setIsSubmitting(false);
-      setLoading(false); // Stop loading indication
-    }, 20000); // Assuming API request takes 20 seconds
+      setLoading(false); // Stop loading indication in case of error
+      if (error.response && error.response.status === 429) {
+        // If 429 error, show alert
+        alert('You can only avail the offer once every 6 hours.');
+      }
+    }
   };
 
   return (
@@ -45,7 +66,7 @@ const PopupForm = ({ onClose, onSubmit }) => {
         <h2 className="text-2xl font-bold mb-6">Enter Post URL</h2>
         {isLoading && (
           <div className="absolute top-0 right-0 mr-4 mt-2 text-sm text-gray-500">
-            {`Please wait... (${countdown}s)`}
+            {`Submitting... (${countdown}s)`}
           </div>
         )}
         <form onSubmit={handleSubmit}>
@@ -76,7 +97,7 @@ const PopupForm = ({ onClose, onSubmit }) => {
               className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               disabled={isSubmitting}
             >
-              {isSubmitting ? 'Submitting...' : 'Submit'}
+              {isSubmitting ? 'Please wait...' : 'Submit'}
             </button>
           </div>
         </form>
