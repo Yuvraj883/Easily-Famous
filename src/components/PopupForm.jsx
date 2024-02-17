@@ -56,6 +56,7 @@ const PopupForm = ({ onClose, onSubmit }) => {
       if (error.response && error.response.status === 429) {
         // If 429 error, show alert
         alert('You can only avail the offer once every 6 hours.');
+        setCountdown(20);
       }
     }
   };
